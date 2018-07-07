@@ -7,14 +7,10 @@
 import React, { Component } from 'react';
 import {
   Platform,
-  StyleSheet,
-  Text,
-  View,
   Dimensions,
-  Image,
-  ScrollView,
   FlatList
 } from 'react-native';
+import Post from './src/components/Post';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -22,10 +18,6 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
-//type Props = {};
-
-const width = Dimensions.get('screen').width * 0.5;
 
 export default class InstaluraMobile extends Component {
   render() {
@@ -41,32 +33,9 @@ export default class InstaluraMobile extends Component {
         keyExtractor={item => String(item.id)}
         data={fotos}
         renderItem={({ item }) =>
-          <View>
-            <Text>{item.usuario}</Text>
-            <Image source={require('./resources/img/profile.png')}
-              style={{ width: width, height: width }} />
-          </View>
+          <Post foto={item} />
         }
       />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
