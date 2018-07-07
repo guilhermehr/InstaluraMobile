@@ -9,7 +9,9 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions,
+  Image
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -19,20 +21,17 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+//type Props = {};
+
+const width = Dimensions.get('screen').width;
+
+export default class InstaluraMobile extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Bem-vindo ao curso de React Native da Alura!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View>
+        <Text>rafael</Text>
+        <Image source={require('./resources/img/profile.png')}
+            style={{width: width, height: width}} />
       </View>
     );
   }
