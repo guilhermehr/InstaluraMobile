@@ -12,7 +12,8 @@ import {
   View,
   Dimensions,
   Image,
-  ScrollView
+  ScrollView,
+  FlatList
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -24,7 +25,7 @@ const instructions = Platform.select({
 
 //type Props = {};
 
-const width = Dimensions.get('screen').width;
+const width = Dimensions.get('screen').width * 0.5;
 
 export default class InstaluraMobile extends Component {
   render() {
@@ -36,15 +37,17 @@ export default class InstaluraMobile extends Component {
     ];
 
     return (
-      <ScrollView style={{marginTop: 0}}>
-        {fotos.map(foto =>
-          <View key={foto.id}>
-            <Text>{foto.usuario}</Text>
+      <FlatList style={{ marginTop: 20 }}
+        keyExtractor={item => String(item.id)}
+        data={fotos}
+        renderItem={({ item }) =>
+          <View>
+            <Text>{item.usuario}</Text>
             <Image source={require('./resources/img/profile.png')}
               style={{ width: width, height: width }} />
           </View>
-        )}
-      </ScrollView>
+        }
+      />
     );
   }
 }
