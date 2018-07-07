@@ -11,7 +11,8 @@ import {
   Text,
   View,
   Dimensions,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -27,12 +28,23 @@ const width = Dimensions.get('screen').width;
 
 export default class InstaluraMobile extends Component {
   render() {
+
+    const fotos = [
+      { id: 1, usuario: 'rafael' },
+      { id: 2, usuario: 'alberto' },
+      { id: 3, usuario: 'vitor' }
+    ];
+
     return (
-      <View>
-        <Text>rafael</Text>
-        <Image source={require('./resources/img/profile.png')}
-            style={{width: width, height: width}} />
-      </View>
+      <ScrollView style={{marginTop: 0}}>
+        {fotos.map(foto =>
+          <View key={foto.id}>
+            <Text>{foto.usuario}</Text>
+            <Image source={require('./resources/img/profile.png')}
+              style={{ width: width, height: width }} />
+          </View>
+        )}
+      </ScrollView>
     );
   }
 }
