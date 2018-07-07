@@ -6,11 +6,12 @@
 
 import React, { Component } from 'react';
 import {
+  AppRegistry,
   Platform,
-  Dimensions,
-  FlatList
+  FlatList,
+  StyleSheet
 } from 'react-native';
-import Post from './src/components/Post';
+import Post from './components/Post';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -19,7 +20,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class InstaluraMobile extends Component {
+class InstaluraMobile extends Component {
   render() {
 
     const fotos = [
@@ -29,7 +30,7 @@ export default class InstaluraMobile extends Component {
     ];
 
     return (
-      <FlatList style={{ marginTop: 20 }}
+      <FlatList style={styles.container}
         keyExtractor={item => String(item.id)}
         data={fotos}
         renderItem={({ item }) =>
@@ -38,4 +39,14 @@ export default class InstaluraMobile extends Component {
       />
     );
   }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+  },
+});
+
+export default () => {
+  AppRegistry.registerComponent('InstaluraMobile', () => InstaluraMobile);
 }
