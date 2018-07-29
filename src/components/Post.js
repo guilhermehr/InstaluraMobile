@@ -73,7 +73,21 @@ export default class Post extends Component {
     }
 
     adicionaComentario() {
-        console.warn(this.state.valorComentario);
+        if(this.state.valorComentario === '')
+            return;
+
+        const novaLista = [...this.state.foto.comentarios, {
+            id: this.state.valorComentario,
+            login: 'meuUsuario',
+            texto: this.state.valorComentario,
+        }];
+
+        const fotoAtualizada = {
+            ...this.state.foto,
+            comentarios: novaLista,
+        }
+
+        this.setState({foto: fotoAtualizada, valorComentario: ''});
         this.inputComentario.clear();
     }
 
