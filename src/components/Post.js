@@ -5,7 +5,8 @@ import {
     View,
     Image,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native';
 
 const width = Dimensions.get('screen').width;
@@ -79,7 +80,7 @@ export default class Post extends Component {
                         style={styles.fotoDePerfil} />
                     <Text>{foto.loginUsuario}</Text>
                 </View>
-                <Image source={{ uri: foto.urlFoto }}
+                <Image source={{ uri: "https://picsum.photos/300/400/?random"/*foto.urlFoto*/ }}
                     style={styles.foto} />
 
                 <View style={styles.rodape}>
@@ -90,6 +91,23 @@ export default class Post extends Component {
                 </View>
                 {this.exibeLikes(foto.likers)}
                 {this.exibeLegenda(foto)}
+
+                {foto.comentarios.map(comentario =>
+                    <View style={styles.comentario} key={comentario.id}>
+                        <Text style={styles.tituloComentario}>{comentario.login}</Text>
+                        <Text>{comentario.texto}</Text>
+                    </View>
+                )}
+
+                <View style={styles.novoComentario}>
+                    <TextInput style={styles.input}
+                        placeholder="Adicione um comentário..." 
+                        underlineColorAndroid='transparent' />
+
+                    <Image style={styles.icone}
+                        source={require('../../resources/img/send.png')} />
+                </View>
+
             </View>
         );
     }
@@ -127,5 +145,19 @@ const styles = StyleSheet.create({
     tituloComentario: {
         fontWeight: 'bold',
         marginRight: 5,
-    }
+    },
+    input: {
+        flex: 1,
+        height: 40,
+    },
+    icone: {
+        height: 30,
+        width: 30,
+    },
+    novoComentario: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+    },
 });
